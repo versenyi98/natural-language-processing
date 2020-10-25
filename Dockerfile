@@ -13,6 +13,8 @@ RUN apt-get -y install zip unzip
 
 RUN pip3 install jupyter
 
+RUN apt -y install libcanberra-gtk-module libcanberra-gtk3-module
+
 RUN apt -y install --reinstall firefox
 
 COPY start.sh /
