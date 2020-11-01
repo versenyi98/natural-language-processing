@@ -3,3 +3,4 @@ pandas
 matplotlib
 torch
 torchtext
+unidecode
