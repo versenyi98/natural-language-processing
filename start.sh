@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eux
+set -ex
 
 NLP_DIR=/nlp
 DATA_DIR=$NLP_DIR/Data
