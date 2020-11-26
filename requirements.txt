@@ -6,3 +6,5 @@ torchtext
 unidecode
 jupyter
 gdown
+sklearn
+seaborn
