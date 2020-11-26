@@ -5,7 +5,7 @@ set -ex
 NLP_DIR=/nlp
 DATA_DIR=$NLP_DIR/Data
 
-if [ ! -d "$DATA_DIR" ]; then
+if [ ! -d "$DATA_DIR" ] || [ -z "$(ls -A $DATA_DIR)" ]; then
     mkdir -p $DATA_DIR
     cd $DATA_DIR
 
