@@ -4,3 +4,5 @@ matplotlib
 torch
 torchtext
 unidecode
+jupyter
+gdown
