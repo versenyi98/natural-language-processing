@@ -1,9 +1,6 @@
-FROM ubuntu:latest
+FROM python:3
 
-RUN apt-get -y update
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
 
-RUN apt-get install -y build-essential python3.6 python3-pip python3-dev
-RUN pip3 -q install pip --upgrade
-
-COPY start.sh /
-CMD ["/start.sh"]
+CMD cd /nlp && jupyter notebook NLP.ipynb --allow-root
