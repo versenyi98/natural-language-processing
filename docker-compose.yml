@@ -10,3 +10,7 @@ services:
     pid: host
     ports:
       - 8888:8888
+    devices:
+      - "/dev/nvidia0:/dev/nvidia0"
+      - "/dev/nvidiactl:/dev/nvidiactl"
+      - "/dev/nvidia-uvm:/dev/nvidia-uvm"
