@@ -10,3 +10,4 @@ seaborn
 textacy
 gensim
 nltk
+transformers
