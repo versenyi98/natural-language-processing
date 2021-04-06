@@ -18,30 +18,12 @@ RUN add-apt-repository ppa:graphics-drivers/ppa
 
 RUN apt-get update
 
-# install nvidia driver
-RUN add-apt-repository ppa:graphics-drivers/ppa
-RUN apt update
-RUN apt install -y nvidia-driver-460
+ENV PATH /usr/local/cuda/bin/:$PATH
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib:/usr/local/cuda/lib64
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+LABEL com.nvidia.volumes.needed="nvidia_driver"
 
-RUN apt install -y vulkan-utils
-
-RUN apt install -y libgles2-mesa
-
-RUN cd /tmp &&\
-    os=ubuntu1804 &&\
-    cuda=10.2.89 &&\
-    apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/${os}/x86_64/7fa2af80.pub &&\
-    wget https://developer.download.nvidia.com/compute/cuda/repos/${os}/x86_64/cuda-repo-${os}_${cuda}-1_amd64.deb &&\
-    dpkg -i cuda-repo-*.deb &&\
-    wget https://developer.download.nvidia.com/compute/machine-learning/repos/${os}/x86_64/nvidia-machine-learning-repo-${os}_1.0.0-1_amd64.deb &&\
-    dpkg -i nvidia-machine-learning-repo-*.deb &&\
-    rm -rf /tmp/*.deb &&\
-    apt update
-
-# nvidia-container-runtime
-ENV NVIDIA_VISIBLE_DEVICES \
-        ${NVIDIA_VISIBLE_DEVICES:-all}
-ENV NVIDIA_DRIVER_CAPABILITIES \
-        ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics,compat32,utility
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:/usr/local/cuda/lib64
 
 CMD cd /nlp && jupyter notebook NLP.ipynb --allow-root --NotebookApp.iopub_data_rate_limit=1e10
