@@ -1,49 +1,19 @@
-import datetime as dt
-from typing import Any, Text, Dict, List
+# import datetime as dt
+# from typing import Any, Text, Dict, List
 
-from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+# from rasa_sdk import Action, Tracker
+# from rasa_sdk.executor import CollectingDispatcher
+# from rasa_sdk.events import SlotSet
 
-class ActionGetTime(Action):
+# class ActionGetTime(Action):
 
-    def name(self) -> Text:
-        return "action_show_time"
+#     def name(self) -> Text:
+#         return "action_show_time"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text=f"{dt.datetime.now()}")
+#         dispatcher.utter_message(text=f"{dt.datetime.now()}")
 
-        return []
-
-class ActionReceiveName(Action):
-
-    def name(self) -> Text:
-        return "action_receive_name"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        text = tracker.latest_message['text']
-        dispatcher.utter_message(text=f"I'll remember your name {text}!")
-        return [SlotSet("name", text)]
-
-
-class ActionSayName(Action):
-
-    def name(self) -> Text:
-        return "action_say_name"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        name = tracker.get_slot("name")
-        if not name:
-            dispatcher.utter_message(text="I don't know your name.")
-        else:
-            dispatcher.utter_message(text=f"Your name is {name}!")
-        return []
+#         return []

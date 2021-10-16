@@ -29,43 +29,23 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: path about time
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: give_time
-  - action: action_show_time
-
-- story: name path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: tell_name
-  - action: utter_ask_name
-  - intent: give_name
-  - action: action_receive_name
-  - intent: repeat_name
-  - action: action_say_name
-
 - story: interactive_story_1
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: tell_name
-  - action: utter_ask_name
-  - intent: give_name
-  - action: action_receive_name
+  - intent: request_names
+  - action: name_form
+  - active_loop: name_form
   - slot_was_set:
-    - name: vincent
-  - intent: repeat_name
-  - action: action_say_name
-  - intent: tell_name
-  - action: utter_ask_name
-  - intent: give_name
-  - action: action_receive_name
+    - requested_slot: first_name
   - slot_was_set:
-    - name: jenny
-  - intent: repeat_name
-  - action: action_say_name
-  - intent: goodbye
-  - action: utter_goodbye
+    - first_name: vincent
+  - slot_was_set:
+    - requested_slot: last_name
+  - slot_was_set:
+    - last_name: vincent-mcvincent
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
