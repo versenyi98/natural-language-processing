@@ -1,0 +1,39 @@
+{
+    "settings": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1
+    },
+     "mappings": {
+      "dynamic": "true",
+      "_source": {
+        "enabled": "true"
+      },
+      "properties": {
+        "main_category": {
+          "type": "keyword"
+        },
+        "sub_category": {
+            "type": "keyword"
+        },
+        "short_question": {
+          "type": "text"
+        },
+        "short_question_vector": {
+          "type": "dense_vector",
+          "dims": 300
+        },
+        "long_question": {
+            "type": "text"
+        },
+        "answer": {
+            "type": "text"
+        },
+        "keywords": {
+          "type": "keyword"
+        },
+        "split": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
