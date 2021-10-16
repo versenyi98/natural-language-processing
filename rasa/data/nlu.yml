@@ -97,3 +97,25 @@ nlu:
     - tell me the time
     - got the time
     - what time it is
+
+- intent: tell_name
+  examples: |
+    - i want to tell you my name
+    - give name
+    - ill give you my name
+    - do you want to know my name?
+
+- intent: repeat_name
+  examples: |
+    - what is my name
+    - tell me my name
+    - do you know my name
+    - repeat my name
+
+- intent: give_name
+  examples: |
+    - vincent
+    - rachael
+    - emma
+    - juste
+    - jenny

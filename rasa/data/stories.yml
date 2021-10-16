@@ -35,3 +35,37 @@ stories:
   - action: utter_greet
   - intent: give_time
   - action: action_show_time
+
+- story: name path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: tell_name
+  - action: utter_ask_name
+  - intent: give_name
+  - action: action_receive_name
+  - intent: repeat_name
+  - action: action_say_name
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: tell_name
+  - action: utter_ask_name
+  - intent: give_name
+  - action: action_receive_name
+  - slot_was_set:
+    - name: vincent
+  - intent: repeat_name
+  - action: action_say_name
+  - intent: tell_name
+  - action: utter_ask_name
+  - intent: give_name
+  - action: action_receive_name
+  - slot_was_set:
+    - name: jenny
+  - intent: repeat_name
+  - action: action_say_name
+  - intent: goodbye
+  - action: utter_goodbye
