@@ -2,22 +2,22 @@ version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
 intents:
 - greet
 - deny
-- request_names
+- request_question
 - goodbye
 - affirm
 - mood_great
 - mood_unhappy
 - bot_challenge
+
 slots:
-  first_name:
+  question:
     type: text
     influence_conversation: true
-  last_name:
-    type: text
-    influence_conversation: true
+
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -32,19 +32,20 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
-  utter_ask_first_name:
-  - text: What is your first name?
   utter_submit:
   - text: Ok. Thanks!
   utter_slots_values:
-  - text: I will remember that your name is {first_name} {last_name}!
+  - text: I will remember that your question is {question}!
+  utter_request_question:
+  - text: Go ahead!
+
 actions:
 - utter_greet
 - utter_slots_values
 - utter_submit
+- utter_request_question
+
 forms:
-  name_form:
-    first_name:
-    - type: from_text
-    last_name:
+  question_form:
+    question:
     - type: from_text
