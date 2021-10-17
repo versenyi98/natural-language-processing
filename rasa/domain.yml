@@ -34,16 +34,14 @@ responses:
   - text: I am a bot, powered by Rasa.
   utter_submit:
   - text: Ok. Thanks!
-  utter_slots_values:
-  - text: I will remember that your question is {question}!
   utter_request_question:
   - text: Go ahead!
 
 actions:
 - utter_greet
-- utter_slots_values
 - utter_submit
 - utter_request_question
+- action_show_time
 
 forms:
   question_form:
