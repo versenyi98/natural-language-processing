@@ -4,14 +4,9 @@ session_config:
   carry_over_slots_to_new_session: true
 
 intents:
-- greet
 - deny
 - request_question
-- goodbye
 - affirm
-- mood_great
-- mood_unhappy
-- bot_challenge
 
 slots:
   question:
@@ -19,29 +14,17 @@ slots:
     influence_conversation: true
 
 responses:
-  utter_greet:
-  - text: Hey! How are you?
-  utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
-  utter_goodbye:
-  - text: Bye
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
-  utter_submit:
-  - text: Ok. Thanks!
   utter_request_question:
-  - text: Go ahead!
+  - text: Tedd fel a kérdést!
+  utter_satisfaction:
+  - text: Elégedett vagy a válasszal?
+  utter_goodbye:
+  - text: Örülök, szia!
 
 actions:
-- utter_greet
-- utter_submit
 - utter_request_question
-- action_show_time
+- action_get_answer
+- utter_goodbye
 
 forms:
   question_form:

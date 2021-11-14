@@ -1,5 +1,6 @@
 import datetime as dt
 from typing import Any, Text, Dict, List
+from numpy.lib.npyio import save
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -18,6 +19,10 @@ stop_words = set(stopwords.words('hungarian'))
 es = Elasticsearch(HOST="localhost", PORT="9200")
 nlp = hu_core_ud_lg.load()
 INDEX_NAME = "questions"
+
+saved_response = None
+question = None
+i = 0
 
 def stop_word_filter(text):
     return " ". join([w for w in text if not w in stop_words])
@@ -54,24 +59,40 @@ def search(question):
 
     return response
 
-def rasa_answer(question):
-    response = search(question)
+def rasa_answer(question, i):
+    global saved_response
+    if saved_response == None:
+        saved_response = search(question)
 
-    result = "Answers: \n"
-    for hit in response["hits"]["hits"]:
-        result += "============================\n" + hit["_source"]["short_question"] + "\n" + hit["_source"]["answer"] + "\n"
-    return result
+    if i >= len(saved_response["hits"]["hits"]):
+        return "Nincs több válasz!"
+
+    return saved_response["hits"]["hits"][i]["_source"]["answer"]
+
 class ActionGetTime(Action):
 
     def name(self) -> Text:
-        return "action_show_time"
+        return "action_get_answer"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        question = tracker.get_slot("question")
-        answer = rasa_answer(question)
+        global question
+        global saved_response
+        global i
+
+        new_question = tracker.get_slot("question")
+
+        if question != new_question:
+            i = 0
+            question = new_question
+            saved_response = None
+
+        answer = rasa_answer(question, i)
+
+        i = i + 1
+
         dispatcher.utter_message(text=f"{answer}")
 
         return []

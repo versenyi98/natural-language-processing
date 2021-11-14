@@ -2,16 +2,6 @@ version: "2.0"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
-
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
-
 - rule: Activate form
   steps:
   - intent: request_question
@@ -27,5 +17,16 @@ rules:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_submit
-  - action: action_show_time
+  - action: action_get_answer
+  - action: utter_satisfaction
+
+- rule: Add next answer if not satisfied
+  steps:
+  - intent: deny
+  - action: action_get_answer
+  - action: utter_satisfaction
+
+- rule: Say 'goodbye' if satisfied
+  steps:
+  - intent: affirm
+  - action: utter_goodbye

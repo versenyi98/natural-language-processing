@@ -1,22 +1,5 @@
 version: "2.0"
 nlu:
-- intent: greet
-  examples: |
-    - szia
-    - helló
-    - szevasz
-    - csá
-    - csáó
-    - üdv
-- intent: goodbye
-  examples: |
-    - viszlát
-    - szia
-    - helló
-    - szevasz
-    - csá
-    - csáó
-    - üdv
 - intent: affirm
   examples: |
     - igen
@@ -31,24 +14,6 @@ nlu:
     - nem hinném
     - nem hiszem
     - nem tetszik
-- intent: mood_great
-  examples: |
-    - tökéletes
-    - jó
-    - nagyszerű
-    - csodás
-- intent: mood_unhappy
-  examples: |
-    - szomorú
-    - borzalmas
-    - csalódott vagyok
-    - boldogtalan
-- intent: bot_challenge
-  examples: |
-    - robot vagy?
-    - bot vagy?
-    - emberhez beszélek?
-    - robothoz beszélek?
 - intent: request_question
   examples: |
     - lenne egy kérdésem
