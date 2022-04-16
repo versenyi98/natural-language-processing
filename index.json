@@ -9,12 +9,6 @@
         "enabled": "true"
       },
       "properties": {
-        "main_category": {
-          "type": "keyword"
-        },
-        "sub_category": {
-            "type": "keyword"
-        },
         "short_question": {
           "type": "text"
         },
@@ -27,12 +21,6 @@
         },
         "answer": {
             "type": "text"
-        },
-        "keywords": {
-          "type": "keyword"
-        },
-        "split": {
-          "type": "keyword"
         }
       }
     }
