@@ -1,0 +1,64 @@
+version: "3.1"
+
+actions:
+  - validate_question_form
+  - validate_index_name_form
+  - validate_satisfied_form
+  - clean_slots
+  - predict_category
+  - give_answer
+
+intents:
+  - question
+  - agree
+  - disagree
+
+entities:
+  - question
+  - index_name
+  - satisfied
+
+slots:
+  question:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  index_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  satisfied:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+forms:
+  question_form:
+    required_slots:
+      - question
+  index_name_form:
+    required_slots:
+      - index_name
+  satisfied_form:
+    required_slots:
+      - satisfied
+
+responses:
+  utter_ask_question:
+    - text: "What do you want to know?"
+  
+  utter_ask_index_name:
+    - text: "Do you agree with the prediction?"
+
+  utter_ask_satisfied:
+    - text: "Are you satisfied with the answer?"
+
+  utter_success_satisfied_form:
+    - text: "Nice {satisfied}"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

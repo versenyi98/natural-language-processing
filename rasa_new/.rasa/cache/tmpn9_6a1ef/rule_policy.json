@@ -1,0 +1,47 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}]": "give_answer",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"give_answer\"}}]": "satisfied_form",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"give_answer\"}}, {\"active_loop\": {\"name\": \"satisfied_form\"}, \"prev_action\": {\"action_name\": \"satisfied_form\"}}]": "action_listen",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"question_form\"}}]": "predict_category",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"question_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"predict_category\"}}]": "index_name_form",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"question_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"predict_category\"}}, {\"active_loop\": {\"name\": \"index_name_form\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}]": "action_listen",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"satisfied_form\"}}]": "utter_success_satisfied_form",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"satisfied_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_success_satisfied_form\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"question\"}}]": "clean_slots",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"question\"}}, {\"prev_action\": {\"action_name\": \"clean_slots\"}, \"user\": {\"intent\": \"question\"}}]": "question_form",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"question\"}}, {\"prev_action\": {\"action_name\": \"clean_slots\"}, \"user\": {\"intent\": \"question\"}}, {\"active_loop\": {\"name\": \"question_form\"}, \"prev_action\": {\"action_name\": \"question_form\"}, \"user\": {\"intent\": \"question\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [
+      "question_form",
+      "index_name_form",
+      "satisfied_form"
+    ],
+    "rules_for_loop_unhappy_path": {
+      "[{\"prev_action\": {\"action_name\": \"give_answer\"}}, {\"active_loop\": {\"name\": \"satisfied_form\"}, \"prev_action\": {\"action_name\": \"satisfied_form\"}}]": "do_not_predict_loop_action",
+      "[{\"prev_action\": {\"action_name\": \"predict_category\"}}, {\"active_loop\": {\"name\": \"index_name_form\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}]": "do_not_predict_loop_action",
+      "[{\"prev_action\": {\"action_name\": \"clean_slots\"}}, {\"active_loop\": {\"name\": \"question_form\"}, \"prev_action\": {\"action_name\": \"question_form\"}, \"user\": {\"intent\": \"question\"}}]": "do_not_predict_loop_action"
+    },
+    "rules_not_in_stories": [
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"satisfied_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_success_satisfied_form\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"give_answer\"}}]",
+      "predicting default action with intent restart",
+      "handling active loops and forms - satisfied_form - action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"question\"}}, {\"prev_action\": {\"action_name\": \"clean_slots\"}, \"user\": {\"intent\": \"question\"}}]",
+      "handling active loops and forms - question_form",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"question_form\"}}]",
+      "handling active loops and forms - index_name_form - action_listen",
+      "predicting default action with intent session_start",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"index_name_form\"}}]",
+      "handling active loops and forms - satisfied_form",
+      "predicting default action with intent back",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"question_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"predict_category\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"satisfied_form\"}}]",
+      "handling active loops and forms - index_name_form",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"question\"}}]",
+      "handling active loops and forms - question_form - action_listen"
+    ]
+  }
+}

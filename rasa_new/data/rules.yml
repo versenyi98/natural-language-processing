@@ -1,0 +1,43 @@
+version: "3.1"
+
+rules:
+  - rule: Activate question_form
+    steps:
+      - intent: question
+      - action: clean_slots
+      - action: question_form
+      - active_loop: question_form
+
+  - rule: Submit question_form
+    condition:
+      - active_loop: question_form
+    steps:
+      - action: question_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: predict_category
+      - action: index_name_form
+      - active_loop: index_name_form
+  
+  - rule: Submit index_name_form
+    condition:
+      - active_loop: index_name_form
+    steps:
+      - action: index_name_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: give_answer
+      - action: satisfied_form
+      - active_loop: satisfied_form
+
+  - rule: Submit satisfied form
+    condition:
+      - active_loop: satisfied_form
+    steps:
+      - action: satisfied_form
+      - active_loop: null
+      - slot_was_set:
+        - requested_slot: null
+      - action: utter_success_satisfied_form
