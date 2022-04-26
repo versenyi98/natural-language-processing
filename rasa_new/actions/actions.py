@@ -94,20 +94,12 @@ class ValidateSatisfied(FormValidationAction):
     def name(self) -> Text:
         return "validate_satisfied_form"
 
-    async def required_slots(
+    def validate_satisfied(
         self,
-        slots_mapped_in_domain: List[Text],
+        slot_value: Any,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
-        domain: DomainDict
-    ) -> Optional[List[Text]]:
-        return slots_mapped_in_domain + ["satisfied"]
-
-    async def extract_satisfied(
-        self,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict
+        domain: DomainDict,
     ) -> Dict[Text, Any]:
 
         intent = tracker.latest_message['intent'].get('name')
@@ -115,6 +107,8 @@ class ValidateSatisfied(FormValidationAction):
         satisfied = None
 
         if intent == 'agree':
-            satisfied = 'yes'
+            satisfied = slot_value
+        else:
+            dispatcher.utter_message(text=find_next_answer())
 
         return {"satisfied": satisfied}

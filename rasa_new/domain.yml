@@ -16,7 +16,6 @@ intents:
 entities:
   - question
   - index_name
-  - satisfied
 
 slots:
   question:
@@ -33,7 +32,10 @@ slots:
     type: text
     influence_conversation: false
     mappings:
-    - type: custom
+      - type: from_text
+        conditions:
+         - active_loop: satisfied_form
+           requested_slot: satisfied
 
 forms:
   question_form:
