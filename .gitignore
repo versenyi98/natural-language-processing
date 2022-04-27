@@ -20,3 +20,6 @@ ipython_config.py
 .data
 .csv
 .model_storage
+
+rasa/actions/__pycache__
+rasa/models
