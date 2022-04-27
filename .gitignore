@@ -23,3 +23,5 @@ ipython_config.py
 
 rasa/actions/__pycache__
 rasa/models
+rasa/story_graph.dot
+rasa/.rasa
