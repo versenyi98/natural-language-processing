@@ -3,9 +3,9 @@ digraph  {
 "-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
 1 [class=active, fontsize=12, label=action_session_start];
 2 [class=active, fontsize=12, label=clean_slots];
-3 [class=active, fontsize=12, label=answer_form];
+3 [class=active, fontsize=12, label=satisfied_form];
 4 [class="dashed active", fontsize=12, label=action_default_fallback];
-5 [class="intent active", fillcolor=lightblue, label="/report", shape=rect, style=filled];
+5 [class="intent active", fillcolor=lightblue, label="/question", shape=rect, style=filled];
 6 [class="intent active", fillcolor=lightblue, label="/agree", shape=rect, style=filled];
 0 -> "-1"  [class="", key=NONE, label=""];
 0 -> 1  [class=active, key=NONE, label=""];
