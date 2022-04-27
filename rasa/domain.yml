@@ -51,16 +51,14 @@ forms:
 
 responses:
   utter_ask_question:
-    - text: "What do you want to know?"
-  
+    - text: "Mit szeretnél tudni?"
+    - text: "Mi a kérdés?"
+    
   utter_ask_index_name:
-    - text: "Do you agree with the prediction?"
+    - text: "Szerinted is illik a kategóriába a kérdésed?"
 
   utter_ask_satisfied:
-    - text: "Are you satisfied with the answer?"
-
-  utter_success_satisfied_form:
-    - text: "Nice {satisfied}"
+    - text: "Elégedett vagy a válasszal?"
 
 session_config:
   session_expiration_time: 60

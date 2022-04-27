@@ -3,22 +3,21 @@ version: "3.1"
 nlu:
 - intent: question
   examples: |
-    - Can I have a question?
-    - Can I ask something?
+    - Kérdezhetek?
+    - Feltehetek egy kérdést?
+    - Tudnál nekem válaszoni?
 
 - intent: agree
   examples: |
-    - Yes
-    - Of course
-    - Yeah
-    - For sure
-    - Yep
+    - Igen
+    - Természetesen
+    - Persze
+    - Hogyne
 
 - intent: disagree
   examples: |
-    - Nope
-    - No
-    - Not really
-    - Don't think so
-    - Nope
+    - Nem
+    - Nem hiszem
+    - Nem igazán
+    - Dehogy
     - Nah
