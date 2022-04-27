@@ -1,7 +1,6 @@
 version: "3.1"
 
 actions:
-  - validate_question_form
   - validate_index_name_form
   - validate_satisfied_form
   - clean_slots
@@ -13,21 +12,23 @@ intents:
   - agree
   - disagree
 
-entities:
-  - question
-  - index_name
-
 slots:
   question:
     type: text
     influence_conversation: false
     mappings:
-    - type: custom
+      - type: from_text
+        conditions:
+         - active_loop: question_form
+           requested_slot: question
   index_name:
     type: text
     influence_conversation: false
     mappings:
-    - type: custom
+      - type: from_text
+        conditions:
+         - active_loop: index_name_form
+           requested_slot: index_name
   satisfied:
     type: text
     influence_conversation: false

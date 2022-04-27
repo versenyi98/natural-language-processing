@@ -1,3 +1,4 @@
+from glob import glob
 from typing import Optional, Dict, Text, Any, List
 
 import random
@@ -8,49 +9,51 @@ from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 
-def find_next_answer():
-    return "<< Next Answer >>"
+from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search, Q
+from elasticsearch.helpers import bulk
+from elasticsearch.exceptions import ElasticsearchWarning
 
-class ValidateQuestionForm(FormValidationAction):
-    def name(self) -> Text:
-        return "validate_question_form"
+ES_QUERY_SIZE = 20
+query_result = None
+answer_idx = -1
 
-    async def required_slots(
-        self,
-        slots_mapped_in_domain: List[Text],
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict
-    ) -> Optional[List[Text]]:
-        return slots_mapped_in_domain + ["question"]
+# create elasticsearch client
+es = Elasticsearch("http://localhost:9200")
 
-    async def extract_question(
-        self,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict
-    ) -> Dict[Text, Any]:
-        text_of_last_user_message = tracker.latest_message.get("text")
-        return {"question": text_of_last_user_message}
+def es_query(question):
+    return {
+        "size": ES_QUERY_SIZE,
+        "query": {
+            "match": {
+                "long_question": {
+                    "query": question,
+                }
+            }
+        }
+    }
+
+def find_next_answer(question):
+    global query_result
+    global answer_idx
+
+    if query_result == None:
+        body = es_query(question)
+        query_result = es.search(index="questions*", body=body)
+
+    answer_idx += 1
+    return query_result['hits']['hits'][answer_idx]['_source']['answer']
 
 class ValidateIndexName(FormValidationAction):
     def name(self) -> Text:
         return "validate_index_name_form"
 
-    async def required_slots(
+    def validate_index_name(
         self,
-        slots_mapped_in_domain: List[Text],
+        slot_value: Any,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
-        domain: DomainDict
-    ) -> Optional[List[Text]]:
-        return slots_mapped_in_domain + ["index_name"]
-
-    async def extract_index_name(
-        self,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict
+        domain: DomainDict,
     ) -> Dict[Text, Any]:
         intent = tracker.latest_message['intent'].get('name')
 
@@ -67,7 +70,13 @@ class CleanSlots(Action):
     def name(self) -> Text:
         return "clean_slots"
 
-    def run(self, dispatcher, tracker, domain):  
+    def run(self, dispatcher, tracker, domain):
+        global answer_idx
+        global query_result
+
+        answer_idx = -1
+        query_result = None
+
         return [SlotSet("question", None), SlotSet("index_name", None), SlotSet("satisfied", None)]
 
 class PredictCategory(Action):
@@ -87,7 +96,7 @@ class GiveAnswer(Action):
         return "give_answer"
     
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message(text=find_next_answer())
+        dispatcher.utter_message(text=find_next_answer(tracker.get_slot('question')))
         return []
 
 class ValidateSatisfied(FormValidationAction):
@@ -107,8 +116,14 @@ class ValidateSatisfied(FormValidationAction):
         satisfied = None
 
         if intent == 'agree':
-            satisfied = slot_value
+            satisfied = 'yes'
         else:
-            dispatcher.utter_message(text=find_next_answer())
+            # Finding next answer
+            global answer_idx
+
+            if answer_idx == ES_QUERY_SIZE - 1:
+                satisfied = 'no'
+            else:
+                dispatcher.utter_message(text=find_next_answer(tracker.get_slot('question')))
 
         return {"satisfied": satisfied}
