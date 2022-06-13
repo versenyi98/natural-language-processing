@@ -21,3 +21,7 @@ nlu:
     - Nem igazán
     - Dehogy
     - Nah
+
+- intent: test
+  examples: |
+    - is working

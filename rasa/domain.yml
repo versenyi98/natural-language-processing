@@ -1,65 +1,337 @@
 version: "3.1"
 
-actions:
-  - validate_index_name_form
-  - validate_satisfied_form
-  - clean_slots
-  - predict_category
-  - give_answer
-
 intents:
-  - question
-  - agree
-  - disagree
-
-slots:
-  question:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_text
-        conditions:
-         - active_loop: question_form
-           requested_slot: question
-  index_name:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_text
-        conditions:
-         - active_loop: index_name_form
-           requested_slot: index_name
-  satisfied:
-    type: text
-    influence_conversation: false
-    mappings:
-      - type: from_text
-        conditions:
-         - active_loop: satisfied_form
-           requested_slot: satisfied
-
-forms:
-  question_form:
-    required_slots:
-      - question
-  index_name_form:
-    required_slots:
-      - index_name
-  satisfied_form:
-    required_slots:
-      - satisfied
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy 
+  - bot_challenge
+  - new
+  - research
+  - applied
+  - submit
+  - upload
+  - Doctors
+  - publish
+  - topics
+  - members
+  - sharing
+  - content
+  - join
+  - kinds
+  - grading
+  - deadline
+  - Arabic
+  - research1
+  - applied1
+  - submit1
+  - upload1
+  - Doctors1
+  - publish1
+  - topics1
+  - members1
+  - sharing1
+  - content1
+  - join1
+  - kinds1
+  - grading1
+  - deadline1
+  - thanks
+  - thanks1
+  - pledging
+  - pledging1
+  - form1
+  - form
+  - fontlength
+  - fontlength1
+  - fontstyle
+  - fontstyle1
+  - LineSpace
+  - LineSpace1
+  - Heading
+  - Heading1
+  - sub-headings
+  - sub-headings1
+  - Paragraphs
+  - Paragraphs1
+  - alignment
+  - alignment1
+  - PageNumbering1
+  - PageNumbering
+  - paper
+  - paper1
+  - documentationa1
+  - documentationa
+  - documentationb
+  - documentationb1
+  - hoursa
+  - hoursone
+  - hoursb
+  - hourstwo
+  - TableofContents
+  - TableofContents1
 
 responses:
-  utter_ask_question:
-    - text: "Mit szeretnél tudni?"
-    - text: "Mi a kérdés?"
-    
-  utter_ask_index_name:
-    - text: "Szerinted is illik a kategóriába a kérdésed?"
+  utter_greet:
+  - text: "Welcome to KASIT Graduation Bot"
 
-  utter_ask_satisfied:
-    - text: "Elégedett vagy a válasszal?"
+  utter_cheer_up:
+  - text: "If there is no answer for your question so ask it in the blog [Blog for questions](http://localhost:8080/blog)."
+
+  utter_did_that_help:
+  - text: "If there is no answer for your question so ask it in the blog [Blog for questions](http://localhost:8080/blog)."
+
+  utter_happy:
+  - text: "If there is no answer for your question so ask it in the blog [Blog for questions](http://localhost:8080/blog)."
+
+  utter_goodbye:
+  - text: "If there is no answer for your question so ask it in the blog [Blog for questions](http://localhost:8080/blog)."
+
+  utter_iamabot:
+  - text: "If there is no answer for your question so ask it in the blog [Blog for questions](http://localhost:8080/blog)."
+
+  utter_research:
+  - text: "1.	Choose a question or problem area to research.
+          2.	Form a hypothesis and algorithms.
+          3.	Select a method, plan and collect the data.
+          4.	Analyze the data collected.
+          5.	Summaries your observations and draw a conclusion.
+          6.	Write a project report and communicate the results."
+
+  utter_applied:
+  - text: "Product-based planning means that you put the focus on tangible deliverables and outcomes, and plan the project from the perspective of your customers, rather than focusing on the action items within a project.
+           After choosing an idea and then implementing it by turning it into a software using code."
+ 
+  utter_submit:
+  - text: "Each group should submit two copies of the project's software (including source code files) and the documentation to the advisor. The advisor will retain one copy and submit the other to the department. A soft copy of the project’s documentation and the documentation should be uploaded to e-learning as well. The group is required to complete the project and to submit its deliverables to their advisor at least one week before the defense day."
+  
+  utter_upload:
+  - text: "Only one student uploads the final copy of the project to the e-learning system and sends another copy to the supervisor."
+  
+  utter_Doctors:
+  - text: "All the graduation projects' defenses will be scheduled in the last day of classes. A complete schedule for all the defenses will be announced at an early time. The schedule shows each group's defense time, locations, and examiners. Before the projects defense day, the department will announce two examiners for each group. The examiners will attend the project’s defense and provide their evaluation.
+In the project's defense, the advisor and the examiners are going to investigate the project's deliverables with the group. Then, they are going to complete the evaluation forms. These forms evaluate the students in two perspectives 1) group based 2) individual based. Finally, a final evaluation form is submitted to the department.
+"
+  utter_publish:
+  - text: "[Projects discussion date](http://computer.ju.edu.jo/ar/arabic/Lists/Announcements/School_DispAnn.aspx?ID=907)"
+
+
+  utter_website:
+  - text: "http://computer.ju.edu.jo/ar/arabic/Home.aspx"  
+
+  utter_topics:
+  - text: "It will be shared college website or elearning"  
+
+  utter_sharing:
+  - text: "It is not allowed except in some cases. Please check from the head of the department"  
+
+  utter_content:
+  - text: "http://computer.ju.edu.jo/FacultyForms/KASIT%20Graduation%20Project%20Handbook2016.pdf"  
+
+  utter_join:
+  - text: "Upon completion of 90 hours of study plan "  
+
+  utter_kinds:
+  - text: "Applied Projects and Research Projects"  
+
+  utter_grading:
+  - text: "All the graduation projects' defenses will be scheduled in the last day of classes. A complete schedule for all the defenses will be announced at an early time. The schedule shows each group's defense time, locations, and examiners. Before the projects defense day, the department will announce two examiners for each group. The examiners will attend the project’s defense and provide their evaluation.
+In the project's defense, the advisor and the examiners are going to investigate the project's deliverables with the group. Then, they are going to complete the evaluation forms. These forms evaluate the students in two perspectives 1) group based 2) individual based. Finally, a final evaluation form is submitted to the department.
+ [Form Grading](https://docs.google.com/document/d/1CDjfMdvF8cIz21VfJC8p8Pbf1yYBQFe_/edit?usp=sharing&ouid=113861527435812583367&rtpof=true&sd=true)    
+ "  
+
+  utter_deadline:
+  - text: "http://computer.ju.edu.jo/ar/arabic/Home.aspx"  
+
+  utter_members:
+  - text: "Two To Four Students"   
+
+  utter_Arabic:
+  - text: "اذا لم يتم الإجابة على سؤالك اسأل بالمدونة [Blog for questions](http://localhost:8080/blog)."
+  
+
+  utter_research1:
+  - text: "1)	اختر سؤالاً أو مشكلة للبحث.
+2)	تشكيل الفرضية والخوارزميات.
+3)	حدد طريقة وخطة وجمع البيانات.
+4)	تحليل البيانات التي تم جمعها.
+5)	لخص ملاحظاتك والاستنتاجات.
+6)	اكتب تقريرعن المشروع وانقل النتائج
+"  
+
+  utter_applied1:
+  - text: "تركز المشاريع التطبيقية على المخرجات و النتائج الملموسة ،
+  و التخطيط للمشروع من وجهة نظر المستخدم . 
+  وبعد اختيار الفكرة قم بتحويلها الى برنامج باستخدام الكود."  
+
+  utter_submit1:
+  - text: "يجب على كل مجموعة إرسال نسختين من المشروع (بما في ذلك ملفات الكود)
+   والوثائق إلى المشرف. سيحتفظ المشرف بنسخة ويقدم الأخرى للقسم.
+    يجب تحميل نسخة إلكترونية من المشروع والوثائق إلى نظام التعلم الإلكتروني أيضًا.
+    يتعين على المجموعة إكمال المشروع وتقديم مخرجاتها
+    إلى المشرف قبل أسبوع واحد على الأقل من يوم المناقشة."  
+
+  utter_upload1:
+  - text: "يرفع فقط طالب واحد النسخة النهائية للمشروع
+   على المكان المخصص للتسليم وارسال نسخة اخرى للمشرف"  
+
+  utter_Doctors1:
+  - text: "يحدد القسم مشرفي مشروع التخرج تلقائيا لكل فريق او يعرض الفريق فكرته 
+  على دكتور محدد و بعد موافقته يصبح هو مشرف الفريق ،
+  حيث يتراوح عدد المشرفين من واحد الى اثنين لكل فريق "  
+
+  utter_publish1:
+  - text: "[مواعيد مناقشات مشاريع التخرج](http://computer.ju.edu.jo/ar/arabic/Lists/Announcements/School_DispAnn.aspx?ID=907)"  
+
+  utter_sharing1:
+  - text: "غير مسموح إلا ببعض الحالات يرجى التأكد من الشروط من رئيس القسم"  
+
+  utter_content1:
+  - text: "6 تشابترات"  
+
+  utter_join1:
+  - text: "بعد إنهاء 90 ساعة دراسية على الأقل"  
+
+  utter_kinds1:
+  - text: "المشاريع التطبيقية و المشاريع البحثية"  
+
+  utter_grading1:
+  - text: "تتم جدولة جميع مشاريع التخرج في اليوم الاخير من المحاضرات 
+  . ثم يتم الاعلان عن الجدول النهائي الذي يحتوي و الوقت لكل مجموعة ،و المكان الحدد 
+  ،و المناقشين قبل المناقشة بيوم حيث يحدد القسم مشرفين اثنين لكل فريق لمناقشة المشروع 
+  . في يوم المناقشات ،يناقش الطلاب و المناقشين مخرجات المشروع و يتحققوا منها 
+  . ثم يملأ المناقشون استمارات التقييم التي تقيم الطلاب على اساس المجموعة
+   و على اساس فردي .ثم يتم تقديم نموذج التقييم النهائي للقسم .   [نموذج التقييم](https://docs.google.com/document/d/1CDjfMdvF8cIz21VfJC8p8Pbf1yYBQFe_/edit?usp=sharing&ouid=113861527435812583367&rtpof=true&sd=true)    
+"  
+
+  utter_deadline1:
+  - text: "http://computer.ju.edu.jo/ar/arabic/Home.aspx"  
+
+  utter_members1:
+  - text: " من طالبين ولغاية 4 طلاب في كل مجموعة"    
+
+  utter_topics1:
+  - text: "سيتم نشرها على موقع الكلية"  
+
+
+  utter_thanking:
+  - text: "You're Welcome "  
+
+  utter_thanking1:
+  - text: " عفواً"  
+   
+
+  utter_pledging:
+  - text: "[Pledge sheet](http://computer.ju.edu.jo/ar/Arabic/FacultyForms/%D8%AA%D8%B9%D9%87%D8%AF%20%D8%A7%D9%84%D8%B7%D8%A7%D9%84%D8%A8%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D9%85%D8%A7%D8%AF%D8%A9%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%A7%D9%84%D8%AA%D8%AE%D8%B1%D8%AC.pdf)"     
+   
+  utter_pledging1:
+  - text: "[نموذج التعهد](http://computer.ju.edu.jo/ar/Arabic/FacultyForms/%D8%AA%D8%B9%D9%87%D8%AF%20%D8%A7%D9%84%D8%B7%D8%A7%D9%84%D8%A8%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D9%85%D8%A7%D8%AF%D8%A9%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%A7%D9%84%D8%AA%D8%AE%D8%B1%D8%AC.pdf)"     
+   
+  utter_form1:
+  - text: "https://docs.google.com/document/d/1aB_-GmvPQ_zJH3tGX0e7jWl_mNvFlruF/edit?usp=sharing&ouid=113861527435812583367&rtpof=true&sd=true"     
+   
+  utter_form:
+  - text: "https://docs.google.com/document/d/1aB_-GmvPQ_zJH3tGX0e7jWl_mNvFlruF/edit?usp=sharing&ouid=113861527435812583367&rtpof=true&sd=true"     
+   
+  utter_fontlength1:
+  - text: "يجب أن يكون 12"     
+   
+  utter_fontlength:
+  - text: "Shoud be 12 "     
+   
+  utter_fontstyle:
+  - text: "Times New Romans"     
+   
+  utter_fontstyle1:
+  - text: "Times New Romans"     
+   
+  utter_LineSpace1:
+  - text: "2.0 (double spacing) "     
+   
+  utter_LineSpace:
+  - text: "2.0 "     
+   
+  utter_Heading1:
+  - text: "14 غامق وحجم "     
+   
+  utter_Heading:
+  - text: " (bold) capital letters. The maximum size Headings is 14 point. "     
+   
+  utter_sub-headings1:
+  - text: "   حجم الخط 12 و محاذاة لليسار "     
+   
+  utter_sub-headings:
+  - text: "  sub-headings are to be aligned to the left margin and should be of 12 point in size."     
+   
+  utter_Paragraphs:
+  - text: "Spacing between two paragraphs should be set at 4.0 points. The first sentence of a paragraph should be indented to 1.25 cm."     
+   
+  utter_Paragraphs1:
+  - text: "     التباعد بين فقرتين عند 4.0 نقاط.
+     المسافة البادئة للجملة الأولى من الفقرة 1.25 سم"     
+   
+  utter_alignment:
+  - text: "LEFT:                      3 cm 
+/TOP:                        2 cm
+/RIGHT:                  2 cm
+/BOTTOM:  	       2 cm "     
+   
+  utter_alignment1:
+  - text: " اليسار: 3 سم / 
+الأعلى: 2 سم/
+اليمين: 2 سم/
+الأسفل: 2 سم/"     
+   
+  utter_PageNumbering1:
+  - text: "يجب ترقيم كل ورقة في المخطوطة باستثناء صفحة العنوان"     
+   
+  utter_PageNumbering:
+  - text: "Every sheet of paper in the manuscript except the title page must be numbered."     
+   
+  utter_paper:
+  - text: "A4 "     
+   
+  utter_paper1:
+  - text: "A4"     
+   
+  
+   
+
+  utter_documentationa1:
+  - text: "https://docs.google.com/document/d/15rYaVnxf30PXy7Rjr1vvHDAjwAAhz61u/edit?usp=sharing&ouid=113861527435812583367&rtpof=true&sd=true"  
+   
+   
+  utter_documentationa:
+  - text: "https://docs.google.com/document/d/15rYaVnxf30PXy7Rjr1vvHDAjwAAhz61u/edit?usp=sharing&ouid=113861527435812583367&rtpof=true&sd=true"    
+   
+  utter_documentationb:
+  - text: "http://computer.ju.edu.jo/FacultyForms/KASIT%20Graduation%20Project%20Handbook2016.pdf"    
+   
+  utter_documentationb1:
+  - text: "http://computer.ju.edu.jo/FacultyForms/KASIT%20Graduation%20Project%20Handbook2016.pdf"    
+   
+  utter_hoursa:
+  - text: "0 hours success or fail"    
+   
+  utter_hoursone:
+  - text: " صفر ساعة ناجح راسب"    
+   
+  utter_hourstwo:
+  - text: "3 ساعات"    
+   
+  utter_hoursb:
+  - text: "3 hours" 
+
+  utter_TableofContents:
+  - text: "https://drive.google.com/file/d/1ENd0WGf6LXZCXSgcQDMFkZTkYK5I-dQh/view?usp=sharing" 
+
+  utter_TableofContents1:
+  - text: "https://drive.google.com/file/d/1ENd0WGf6LXZCXSgcQDMFkZTkYK5I-dQh/view?usp=sharing"   
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+
